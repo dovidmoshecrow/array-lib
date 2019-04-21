@@ -143,4 +143,4 @@ if (!Array.prototype.replace) {
 }
 
 
-"hello ,world ,how ,are ,you".toArray().print()
+//TODO:avrage,multiply matricis,dimentions,
