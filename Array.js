@@ -52,28 +52,33 @@ if (!Array.prototype.pos) {
 if (!Array.prototype.print) {
     Array.prototype.print = function () {
         console.log(this);
+        return this;
     }
 }
 
 if (!String.prototype.print) {
     String.prototype.print = function () {
         console.log(this.valueOf());
+        return this.valueOf();
     }
 }
 if (!Boolean.prototype.print) {
     Boolean.prototype.print = function () {
         console.log(this.valueOf());
+        return this.valueOf();
     }
 }
 if (!Number.prototype.print) {
     Number.prototype.print = function () {
         console.log(this.valueOf());
+        return this.valueOf();
     }
 }
 
 if (!Object.prototype.print) {
     Object.prototype.print = function () {
         console.log(this.valueOf());
+        return this.valueOf();
     }
 }
 
@@ -83,37 +88,52 @@ if (Array.prototype.add) {
         arr.forEach(e => {
             this.push(e);
         });
+        return this;
     }
 }
 
-//todo: add array length == 0 console.error
 if (!Array.prototype.add_up) {
     Array.prototype.add_up = function () {
         let arr = this.filter(x => typeof x === "number");
+        if (arr.length === 0) {
+            console.error("no numbers in array");
+        }
         return arr.reduce((a, b) => a + b);
     }
 }
 if (!Array.prototype.max) {
     Array.prototype.max = function () {
         let arr = this.filter(x => typeof x === "number");
+        if (arr.length === 0) {
+            console.error("no numbers in array");
+        }
         return Math.max(...arr);
     }
 }
 if (!Array.prototype.max_index) {
     Array.prototype.max_index = function () {
         let arr = this.filter(x => typeof x === "number");
+        if (arr.length === 0) {
+            console.error("no numbers in array");
+        }
         return arr.indexOf(Math.max(...arr));
     }
 }
 if (!Array.prototype.min) {
     Array.prototype.min = function () {
         let arr = this.filter(x => typeof x === "number");
+        if (arr.length === 0) {
+            console.error("no numbers in array");
+        }
         return Math.min(...arr);
     }
 }
 if (!Array.prototype.min_index) {
     Array.prototype.min_index = function () {
         let arr = this.filter(x => typeof x === "number");
+        if (arr.length === 0) {
+            console.error("no numbers in array");
+        }
         return arr.indexOf(Math.min(...arr));
     }
 }
@@ -122,15 +142,17 @@ if (!Array.prototype.sort_by) {
         if (type === "length") {
             this.sort((a, b) => a.length + b.length);
         } else if (type === "value") {
-            this.sort((a, b) => a + b);
+            this.sort((a, b) => a > b);
         } else if ("a-b") {
             this.sort();
         }
+        return this;
     }
 }
 if (!Array.prototype.remove) {
     Array.prototype.remove = function (n) {
         this.splice(n, 1);
+        return this;
     }
 }
 
@@ -147,6 +169,7 @@ if (!Array.prototype.remove_val) {
                 this.remove(this.pos(val));
             }
         }
+        return this;
     }
 }
 
@@ -168,6 +191,7 @@ if (!Array.prototype.replace) {
                 this[i] = to;
             }
         })
+        return this;
     }
 }
 //todo: doc
@@ -188,7 +212,7 @@ function multiplyMatrices(A, B) {
 
     return result.map((row, i) => {
         return row.map((val, j) => {
-            return A[i].reduce((sum, elm, k) => sum + (elm * B[k][j]), 0)
+            return A[i].reduce((sum, elm, k) => sum + (elm * B[k][j]), 0);
         })
     })
 }
@@ -198,8 +222,8 @@ if (!Array.prototype.multiplyMatrices) {
 }
 
 //todo: doc
-if (!Array.prototype.is2d) {
-    Array.prototype.is2d = function () {
+if (!Array.prototype.isMatrix) {
+    Array.prototype.isMatrix = function () {
         let check = JSON.stringify(this);
         let slice = check.slice(1, check.length - 1);
         let count = 0;
@@ -217,7 +241,7 @@ if (!Array.prototype.is2d) {
         })
         if (is2d) {
             let j = this[0].length
-            for (let i = 0; i <this.length; i++) {
+            for (let i = 0; i < this.length; i++) {
                 if (this[i].length !== j) {
                     return false;
                 }
@@ -227,3 +251,4 @@ if (!Array.prototype.is2d) {
         return false;
     }
 }
+
