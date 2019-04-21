@@ -88,3 +88,15 @@ it deletes white spaces
 "hello ,world ,how ,are ,you".toArray().print();//=>
  //[ 'hello', 'world', 'how', 'are', 'you' ]
 ```
+**Multiply 2 matrices**
+ 
+```js 
+multiplyMatrices([[1,2],[3,4]],[[1,4],[6,7]]).print();
+//=>[ [ 13, 18 ], [ 27, 40 ] ]
+```
+Or by Array prototype
+```js
+let b = [[1,2],[3,4]]
+b.multiplyMatrices([[1,4],[6,7]]).print()
+//=>[ [ 13, 18 ], [ 27, 40 ] ]
+```

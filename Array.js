@@ -142,5 +142,31 @@ if (!Array.prototype.replace) {
     }
 }
 
+if(!Array.prototype.avrage){
+    Array.prototype.avrage = function(){
+        let arr = this.filter(x => typeof x === "number");
+        return arr.add_up() / arr.length;
+    }
+}
 
-//TODO:avrage,multiply matricis,dimentions,
+function multiplyMatrices (A, B) {
+    if(!B){
+        temp = A;
+        A = this;
+        B = temp;
+    }
+    var result = new Array(A.length).fill(0).map(row => new Array(B[0].length).fill(0));
+
+    return result.map((row, i) => {
+        return row.map((val, j) => {
+            return A[i].reduce((sum, elm, k) => sum + (elm*B[k][j]) ,0)
+        })
+    })
+}
+
+if(!Array.prototype.multiplyMatrices){
+    Array.prototype.multiplyMatrices = multiplyMatrices;
+}
+
+
+

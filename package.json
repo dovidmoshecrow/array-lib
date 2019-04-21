@@ -15,7 +15,8 @@
     "conversion",
     "function",
     "library",
-    "string to Array"
+    "string to Array",
+    "Multiply matrices"
   ],
   "author": "dovid crow",
   "license": "ISC",
