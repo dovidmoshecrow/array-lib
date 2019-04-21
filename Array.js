@@ -26,8 +26,13 @@ if (!String.prototype.toArray) {
 //return deep copy of array.
 if (!Array.prototype.clone) {
     Array.prototype.clone = function () {
-        let arr = this;
-        return JSON.parse(JSON.stringify(arr));
+        return JSON.parse(JSON.stringify(this));
+    }
+}
+
+if (!Object.prototype.clone) {
+    Object.prototype.clone = function () {
+        return JSON.parse(JSON.stringify(this.valueOf()));
     }
 }
 
@@ -50,6 +55,28 @@ if (!Array.prototype.print) {
     }
 }
 
+if (!String.prototype.print) {
+    String.prototype.print = function () {
+        console.log(this.valueOf());
+    }
+}
+if (!Boolean.prototype.print) {
+    Boolean.prototype.print = function () {
+        console.log(this.valueOf());
+    }
+}
+if (!Number.prototype.print) {
+    Number.prototype.print = function () {
+        console.log(this.valueOf());
+    }
+}
+
+if (!Object.prototype.print) {
+    Object.prototype.print = function () {
+        console.log(this.valueOf());
+    }
+}
+
 //adds multiple elements to array togther;
 if (Array.prototype.add) {
     Array.prototype.add = function (arr) {
@@ -58,6 +85,8 @@ if (Array.prototype.add) {
         });
     }
 }
+
+//todo: add array length == 0 console.error
 if (!Array.prototype.add_up) {
     Array.prototype.add_up = function () {
         let arr = this.filter(x => typeof x === "number");
@@ -141,32 +170,60 @@ if (!Array.prototype.replace) {
         })
     }
 }
-
-if(!Array.prototype.avrage){
-    Array.prototype.avrage = function(){
+//todo: doc
+if (!Array.prototype.avrage) {
+    Array.prototype.avrage = function () {
         let arr = this.filter(x => typeof x === "number");
         return arr.add_up() / arr.length;
     }
 }
 
-function multiplyMatrices (A, B) {
-    if(!B){
+function multiplyMatrices(A, B) {
+    if (!B) {
         temp = A;
         A = this;
         B = temp;
     }
-    var result = new Array(A.length).fill(0).map(row => new Array(B[0].length).fill(0));
+    let result = new Array(A.length).fill(0).map(row => new Array(B[0].length).fill(0));
 
     return result.map((row, i) => {
         return row.map((val, j) => {
-            return A[i].reduce((sum, elm, k) => sum + (elm*B[k][j]) ,0)
+            return A[i].reduce((sum, elm, k) => sum + (elm * B[k][j]), 0)
         })
     })
 }
 
-if(!Array.prototype.multiplyMatrices){
+if (!Array.prototype.multiplyMatrices) {
     Array.prototype.multiplyMatrices = multiplyMatrices;
 }
 
-
-
+//todo: doc
+if (!Array.prototype.is2d) {
+    Array.prototype.is2d = function () {
+        let check = JSON.stringify(this);
+        let slice = check.slice(1, check.length - 1);
+        let count = 0;
+        let is2d = true;
+        [...slice].forEach((e, i) => {
+            if (e === "[") {
+                count++;
+            }
+            if (e === "]") {
+                count = 0;
+            }
+            if (count === 2) {
+                is2d = false;
+            }
+        })
+        if (is2d) {
+            let j = this[0].length
+            for (let i = 0; i <this.length; i++) {
+                if (this[i].length !== j) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+}
