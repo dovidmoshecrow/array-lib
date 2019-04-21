@@ -12,7 +12,7 @@ npm install array-lib
 ```js
  const arrayLib = require("array-lib");
  ```
- **deep copy a array:**
+ **deep copy an array:**
  ```js
  let arr = [1,2,3];
  let clone_arr = arr.clone();
