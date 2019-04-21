@@ -1,11 +1,21 @@
 {
   "name": "array-lib",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A library for array functions in Array.prototype",
   "main": "Array.js",
   "keywords": [
     "array",
-    "prototype"
+    "prototype",
+    "clone",
+    "matrix",
+    "vector",
+    "list",
+    "string",
+    "manipulation",
+    "conversion",
+    "function",
+    "library",
+    "string to Array"
   ],
   "author": "dovid crow",
   "license": "ISC",
