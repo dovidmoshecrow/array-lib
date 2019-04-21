@@ -65,4 +65,9 @@ arr.print();
 
 let arr = Array.vector(6,"fill");
 arr.print();//Output:['fill', 'fill', 'fill','fill', 'fill', 'fill']
+
+//create an array from string:
+//it deletes white spaces
+"hello ,world ,how ,are ,you".toArray().print();//Output:
+ //[ 'hello', 'world', 'how', 'are', 'you' ]
 ```
