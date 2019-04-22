@@ -1,3 +1,37 @@
+/**
+ * @Array.matrix
+ * @Array.vector
+ * @String.prototype.toArray
+ * @Array.prototype.clone
+ * @Object.prototype.clone
+ * @Array.prototype.pos
+ * @Array.prototype.print
+ * @String.prototype.print
+ * @Boolean.prototype.print
+ * @Number.prototype.print
+ * @Object.prototype.print
+ * @Array.prototype.add
+ * @Array.prototype.add_up
+ * @Array.prototype.max
+ * @Array.prototype.max_index
+ * @Array.prototype.min
+ * @Array.prototype.min_index
+ * @Array.prototype.sort_by
+ * @Array.prototype.remove
+ * @Array.prototype.remove_val
+ * @Array.prototype.count
+ * @Array.prototype.replace
+ * @Array.prototype.avrage
+ * @Array.prototype.multiplyMatrices
+ * @Array.prototype.isMatrix
+ * @Array.prototype.getAllPos
+ * @function multiplyMatrices
+ * 
+ * future:
+ * 
+ * 
+ */
+
 if (!Array.matrix) {
     Array.matrix = function (x, y, fill) {
         return new Array(x).fill(0).map(() => new Array(y).fill(0).map(() => fill));
@@ -32,7 +66,17 @@ if (!Array.prototype.clone) {
 
 if (!Object.prototype.clone) {
     Object.prototype.clone = function () {
+        try {
         return JSON.parse(JSON.stringify(this.valueOf()));
+        }catch {
+            let target = {};
+            for (let prop in this) {
+                if (this.hasOwnProperty(prop)) {
+                target[prop] = src[prop];
+                }
+            }
+            return target;
+        }
     }
 }
 
@@ -140,7 +184,7 @@ if (!Array.prototype.min_index) {
 if (!Array.prototype.sort_by) {
     Array.prototype.sort_by = function (type) {
         if (type === "length") {
-            this.sort((a, b) => a.length + b.length);
+            this.sort((a, b) => a.length > b.length);
         } else if (type === "value") {
             this.sort((a, b) => a > b);
         } else if ("a-b") {
@@ -194,10 +238,11 @@ if (!Array.prototype.replace) {
         return this;
     }
 }
-//todo: doc
+
 if (!Array.prototype.avrage) {
     Array.prototype.avrage = function () {
         let arr = this.filter(x => typeof x === "number");
+        if (arr.length === 0) return 0;
         return arr.add_up() / arr.length;
     }
 }
@@ -221,7 +266,6 @@ if (!Array.prototype.multiplyMatrices) {
     Array.prototype.multiplyMatrices = multiplyMatrices;
 }
 
-//todo: doc
 if (!Array.prototype.isMatrix) {
     Array.prototype.isMatrix = function () {
         let check = JSON.stringify(this);
@@ -252,3 +296,17 @@ if (!Array.prototype.isMatrix) {
     }
 }
 
+
+Array.prototype.getAllPos = function(val){
+  let positions = [];
+  this.valueOf().forEach((e,i) => {
+      if(e === val){
+          positions.push(i);
+      }
+  })
+  return positions;
+}
+
+module.exports = {
+    multiplyMatrices,
+}

@@ -18,24 +18,26 @@ npm install array-lib
  let arr = [1,2,3];
  let clone_arr = arr.clone();
 ```
- **Print an array:**
+ **Print an array:**<br>
+  also supports boolian number and string
  ****
  ```js
  arr.print()//=> [1,2,3]
+ "hello".print();// =>hello
 ```
  **Retrun max value from array**<br /> 
   ignores elements that are not a number:
   ****
  ```js
- console.log(arr.max());
+ arr.max().print();
  ```
 
  **Returns index of max value in array:**
  ****
  ```js
- console.log(arr.max_index());
+ arr.max_index().print()
 ```
-**Removes element at specified position:**
+**Removes element at the specified position:**
 ****
 ```js
 arr.remove(0);
@@ -53,7 +55,7 @@ a.remove_val(4,remove_all_elements);
 a.print();//=> [1,2,3,5,5];
 ```
 
-**Count how much time a element is in an array**
+**Count how much times a element is in an array**
 ****
 ```js
 let b = ["a","b","b","c","b"];
@@ -72,7 +74,7 @@ c.print();//=>[1,2,"d","d","d",4,6,6,9]
 ```js
 let d = [1,2,3,4,5];
 
-console.log(d.add_up());//=> 15
+d.add_up().print();//=> 15
 ```
 **Create 2d array:**
 ****
@@ -93,8 +95,7 @@ let arr = Array.vector(6,"fill");
 arr.print();//=> ['fill', 'fill', 'fill','fill', 'fill', 'fill']
 ```
 
-**create an array from string:**<br />
-it deletes white spaces
+**Create an array from a string:**<br />
 ****
 ```js
 "hello ,world ,how ,are ,you".toArray().print();//=>
@@ -103,7 +104,7 @@ it deletes white spaces
 **Multiply 2 matrices**
  ****
 ```js 
-multiplyMatrices([[1,2],[3,4]],[[1,4],[6,7]]).print();
+arrayLib.multiplyMatrices([[1,2],[3,4]],[[1,4],[6,7]]).print();
 //=>[ [ 13, 18 ], [ 27, 40 ] ]
 ```
 Or by Array prototype
@@ -113,6 +114,7 @@ b.multiplyMatrices([[1,4],[6,7]]).print()
 //=>[ [ 13, 18 ], [ 27, 40 ] ]
 ```
 **check if an array is a 2d matrix**
+****
 ```js
  let matrix = [
      [0,1,2],
@@ -123,6 +125,23 @@ b.multiplyMatrices([[1,4],[6,7]]).print()
  matrix.isMatrix().print()// => true
 ```
 
+**get Avrage from array**
+****
+```js
+    [1,2,3,4,5].avrage().print();//=> 3
+```
+**return position of element in an array**
+****
+```js
+  [1,2,3,4,5].pos(4).print();//=>3
+  [1,2,3,4,5].pos(9).print();//=>false
+```
+**Get all positions of element in array**
+****
+```js
+let arr = [1,3,4,4,8,7,5,3,4];
+b.getAllPos(4).print();//=> [2,3,8]
+```
 ## Chaining
 ****
 ```js
