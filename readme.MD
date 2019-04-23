@@ -19,7 +19,7 @@ npm install array-lib
  let clone_arr = arr.clone();
 ```
  **Print an array:**<br>
-  also supports boolian number and string
+  also supports: boolean, number ,and string.
  ****
  ```js
  arr.print()//=> [1,2,3]
@@ -35,7 +35,7 @@ npm install array-lib
  **Returns index of max value in array:**
  ****
  ```js
- arr.max_index().print()
+ arr.maxIndex().print()
 ```
 **Removes element at the specified position:**
 ****
@@ -50,7 +50,7 @@ arr.print()//=> [2,3]
 ```js
 let a = [1,2,3,4,4,5,5];
 let remove_all_elements = true;
-a.remove_val(4,remove_all_elements);
+a.removeVal(4,remove_all_elements);
 
 a.print();//=> [1,2,3,5,5];
 ```
@@ -74,7 +74,7 @@ c.print();//=>[1,2,"d","d","d",4,6,6,9]
 ```js
 let d = [1,2,3,4,5];
 
-d.add_up().print();//=> 15
+d.addUp().print();//=> 15
 ```
 **Create 2d array:**
 ****
@@ -141,6 +141,35 @@ b.multiplyMatrices([[1,4],[6,7]]).print()
 ```js
 let arr = [1,3,4,4,8,7,5,3,4];
 b.getAllPos(4).print();//=> [2,3,8]
+```
+**shuffle an array**
+****
+```js
+  [1,2,3,4,5,6,7,8,9].shuffle().print();
+  //=> [ 7, 2, 9, 1, 6, 8, 3, 5, 4 ]
+```
+**range**<br>
+A function to create flexibly-numbered lists of integers
+****
+```js
+Array.range(10);
+//=> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+Array.range(1, 11);
+//=> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Array.range(0, 30, 5);
+//=> [0, 5, 10, 15, 20, 25]
+Array.range(0, -10, -1);
+//=> [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+Array.range(0);
+//=> []
+```
+**without**<br>
+Returns a copy of the array with all instances of the values removed.
+```js
+let a = [1,2,3,1,2,31,2,31,1,2,3,]
+let b = a.without(1,2);
+b.print();
+  //=>[ 3, 31, 31, 3 ]
 ```
 ## Chaining
 ****

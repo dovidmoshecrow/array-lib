@@ -1,37 +1,3 @@
-/**
- * @Array.matrix
- * @Array.vector
- * @String.prototype.toArray
- * @Array.prototype.clone
- * @Object.prototype.clone
- * @Array.prototype.pos
- * @Array.prototype.print
- * @String.prototype.print
- * @Boolean.prototype.print
- * @Number.prototype.print
- * @Object.prototype.print
- * @Array.prototype.add
- * @Array.prototype.add_up
- * @Array.prototype.max
- * @Array.prototype.max_index
- * @Array.prototype.min
- * @Array.prototype.min_index
- * @Array.prototype.sort_by
- * @Array.prototype.remove
- * @Array.prototype.remove_val
- * @Array.prototype.count
- * @Array.prototype.replace
- * @Array.prototype.avrage
- * @Array.prototype.multiplyMatrices
- * @Array.prototype.isMatrix
- * @Array.prototype.getAllPos
- * @function multiplyMatrices
- * 
- * future:
- * 
- * 
- */
-
 if (!Array.matrix) {
     Array.matrix = function (x, y, fill) {
         return new Array(x).fill(0).map(() => new Array(y).fill(0).map(() => fill));
@@ -42,6 +8,27 @@ if (!Array.vector) {
         return new Array(l).fill(0).map(() => fill);
     }
 }
+if(!Array.range){
+    Array.range = function(start = 0,stop,step = 1){
+        let arr = []
+       if(start == 0 && (!stop || stop === 0 )|| start == stop){
+           return arr;
+       }else if(!stop){
+         for (let i = 0; i < start; i++) {
+           arr.push(i);
+         }
+       }else if(start > stop && step < 0){
+          for(let i = start;i > stop;i+= step ){
+              arr.push(i);
+          }
+       }else if(start < stop && step > 0){
+        for(let i = start;i < stop;i+= step ){
+            arr.push(i);
+        }
+       }
+       return arr;
+    }
+};
 
 if (!String.prototype.toArray) {
     String.prototype.toArray = function () {
@@ -57,7 +44,6 @@ if (!String.prototype.toArray) {
         }
     }
 }
-//return deep copy of array.
 if (!Array.prototype.clone) {
     Array.prototype.clone = function () {
         return JSON.parse(JSON.stringify(this));
@@ -67,12 +53,12 @@ if (!Array.prototype.clone) {
 if (!Object.prototype.clone) {
     Object.prototype.clone = function () {
         try {
-        return JSON.parse(JSON.stringify(this.valueOf()));
-        }catch {
+            return JSON.parse(JSON.stringify(this.valueOf()));
+        } catch {
             let target = {};
             for (let prop in this) {
                 if (this.hasOwnProperty(prop)) {
-                target[prop] = src[prop];
+                    target[prop] = src[prop];
                 }
             }
             return target;
@@ -80,7 +66,6 @@ if (!Object.prototype.clone) {
     }
 }
 
-//return position of element ,if not found returns false.
 if (!Array.prototype.pos) {
     Array.prototype.pos = function (e) {
         let arr = this;
@@ -92,7 +77,7 @@ if (!Array.prototype.pos) {
         }
     }
 }
-//prints array to console
+
 if (!Array.prototype.print) {
     Array.prototype.print = function () {
         console.log(this);
@@ -136,7 +121,7 @@ if (Array.prototype.add) {
     }
 }
 
-if (!Array.prototype.add_up) {
+if (!Array.prototype.addUp) {
     Array.prototype.add_up = function () {
         let arr = this.filter(x => typeof x === "number");
         if (arr.length === 0) {
@@ -154,7 +139,7 @@ if (!Array.prototype.max) {
         return Math.max(...arr);
     }
 }
-if (!Array.prototype.max_index) {
+if (!Array.prototype.maxIndex) {
     Array.prototype.max_index = function () {
         let arr = this.filter(x => typeof x === "number");
         if (arr.length === 0) {
@@ -172,7 +157,7 @@ if (!Array.prototype.min) {
         return Math.min(...arr);
     }
 }
-if (!Array.prototype.min_index) {
+if (!Array.prototype.minIndex) {
     Array.prototype.min_index = function () {
         let arr = this.filter(x => typeof x === "number");
         if (arr.length === 0) {
@@ -181,7 +166,7 @@ if (!Array.prototype.min_index) {
         return arr.indexOf(Math.min(...arr));
     }
 }
-if (!Array.prototype.sort_by) {
+if (!Array.prototype.sortBy) {
     Array.prototype.sort_by = function (type) {
         if (type === "length") {
             this.sort((a, b) => a.length > b.length);
@@ -200,7 +185,7 @@ if (!Array.prototype.remove) {
     }
 }
 
-if (!Array.prototype.remove_val) {
+if (!Array.prototype.removeVal) {
     Array.prototype.remove_val = function (val, all = false) {
         if (all) {
             for (let i = this.length - 1; i >= 0; i--) {
@@ -296,16 +281,45 @@ if (!Array.prototype.isMatrix) {
     }
 }
 
-
-Array.prototype.getAllPos = function(val){
-  let positions = [];
-  this.valueOf().forEach((e,i) => {
-      if(e === val){
-          positions.push(i);
-      }
-  })
-  return positions;
+if (!Array.prototype.getAllPos) {
+    Array.prototype.getAllPos = function (val) {
+        let positions = [];
+        this.valueOf().forEach((e, i) => {
+            if (e === val) {
+                positions.push(i);
+            }
+        })
+        return positions;
+    }
 }
+if(!Array.prototype.shuffle){
+Array.prototype.shuffle = function() {
+    var i = this.length, j, temp;
+    if ( i == 0 ) return this;
+    while ( --i ) {
+       j = Math.floor( Math.random() * ( i + 1 ) );
+       temp = this[i];
+       this[i] = this[j];
+       this[j] = temp;
+    }
+    return this;
+  };
+};
+if(!Array.prototype.without){
+ Array.prototype.without = function(val){
+     let args = [];
+     let arr = [];
+     for (let i = 0; i < arguments.length; i++) {
+        args.push(arguments[i]);
+     }
+     this.forEach(e => {
+         if(args.indexOf(e) === -1){
+             arr.push(e);
+         }
+     })
+     return arr;
+}
+};
 
 module.exports = {
     multiplyMatrices,
