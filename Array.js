@@ -50,22 +50,6 @@ if (!Array.prototype.clone) {
     }
 }
 
-if (!Object.prototype.clone) {
-    Object.prototype.clone = function () {
-        try {
-            return JSON.parse(JSON.stringify(this.valueOf()));
-        } catch {
-            let target = {};
-            for (let prop in this) {
-                if (this.hasOwnProperty(prop)) {
-                    target[prop] = src[prop];
-                }
-            }
-            return target;
-        }
-    }
-}
-
 if (!Array.prototype.pos) {
     Array.prototype.pos = function (e) {
         let arr = this;
@@ -232,23 +216,19 @@ if (!Array.prototype.avrage) {
     }
 }
 
-function multiplyMatrices(A, B) {
-    if (!B) {
-        temp = A;
-        A = this;
-        B = temp;
-    }
-    let result = new Array(A.length).fill(0).map(row => new Array(B[0].length).fill(0));
 
-    return result.map((row, i) => {
-        return row.map((val, j) => {
-            return A[i].reduce((sum, elm, k) => sum + (elm * B[k][j]), 0);
-        })
-    })
-}
 
 if (!Array.prototype.multiplyMatrices) {
-    Array.prototype.multiplyMatrices = multiplyMatrices;
+    Array.prototype.multiplyMatrices = function(B) {
+            A = this;
+        let result = new Array(A.length).fill(0).map(row => new Array(B[0].length).fill(0));
+    
+        return result.map((row, i) => {
+            return row.map((val, j) => {
+                return A[i].reduce((sum, elm, k) => sum + (elm * B[k][j]), 0);
+            })
+        })
+    }
 }
 
 if (!Array.prototype.isMatrix) {
@@ -321,6 +301,4 @@ if(!Array.prototype.without){
 }
 };
 
-module.exports = {
-    multiplyMatrices,
-}
+
