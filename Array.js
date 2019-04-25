@@ -124,7 +124,7 @@ if (!Array.prototype.max) {
     }
 }
 if (!Array.prototype.maxIndex) {
-    Array.prototype.max_index = function () {
+    Array.prototype.maxIndex = function () {
         let arr = this.filter(x => typeof x === "number");
         if (arr.length === 0) {
             console.error("no numbers in array");
@@ -142,7 +142,7 @@ if (!Array.prototype.min) {
     }
 }
 if (!Array.prototype.minIndex) {
-    Array.prototype.min_index = function () {
+    Array.prototype.minIndex = function () {
         let arr = this.filter(x => typeof x === "number");
         if (arr.length === 0) {
             console.error("no numbers in array");
@@ -151,7 +151,7 @@ if (!Array.prototype.minIndex) {
     }
 }
 if (!Array.prototype.sortBy) {
-    Array.prototype.sort_by = function (type) {
+    Array.prototype.sortBy = function (type) {
         if (type === "length") {
             this.sort((a, b) => a.length > b.length);
         } else if (type === "value") {
@@ -170,7 +170,7 @@ if (!Array.prototype.remove) {
 }
 
 if (!Array.prototype.removeVal) {
-    Array.prototype.remove_val = function (val, all = false) {
+    Array.prototype.removeVal = function (val, all = false) {
         if (all) {
             for (let i = this.length - 1; i >= 0; i--) {
                 if (this[i] === val) {
